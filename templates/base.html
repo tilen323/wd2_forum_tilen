@@ -32,7 +32,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="/about">About</a></li>
-                  <li><a href="#">Login</a></li>
+
+                  {% if user %}
+                    <li><a href="#">{{user.email()}}</a></li>
+                    <li><a href="/topic/create">Create Topic</a></li>
+                    <li><a href="{{logout_url}}">Logout</a></li>
+                  {% else %}
+                    <li><a href="{{login_url}}">Login</a></li>
+                  {% endif %}
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -46,10 +53,13 @@
                 </form>
             </div>
         {% endif %}
+
+    </div>
+
+    <div class="container">
         {% block content %}
         {% endblock content %}
     </div>
-
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
