@@ -10,16 +10,7 @@ body {
 .navbar {
     margin: 0;
     background-color: #3a3838;
-    color: white;
     border-radius: 0;
-}
-
-.navbar a {
-    color: white;
-}
-
-.navbar-toggle {
-    color: white;
 }
 
 li {
