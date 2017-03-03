@@ -19,3 +19,11 @@ class TopicCreateHandler(BaseHandler):
 
         return self.redirect_to("topic", topic_id=new_topic.key.id())
 
+class TopicHandler(BaseHandler):
+    def get(self, topic_id):
+
+        topic = Topic.get_by_id(int(topic_id))
+
+        params = {"topic": topic}
+
+        return self.render_template("topic.html", params=params)

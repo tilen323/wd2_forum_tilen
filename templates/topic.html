@@ -3,9 +3,13 @@
 {% block title %}Topic{% endblock title %}
 
 {% block content %}
-    <div class="panel panel-primary">
-        <div class="panel-heading">{{ topic.title }}</div>
-        <div class="panel-body">{{ topic.content }}</div>
-        <div class="panel-footer">{{ topic.author_email }}, created on {{ topic.created }}</div>
+    <div class="container">
+        <h2>Topic</h2>
+        <hr>
+        <div class="panel panel-primary panel-topic">
+            <div class="panel-heading">{{ topic.title }}</div>
+            <div class="panel-body">{{ topic.content }}</div>
+            <div class="panel-footer">{{ topic.author_email }}, created on {{ topic.created }}</div>
+        </div>
     </div>
 {% endblock content %}

@@ -1,1 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.navbar {
+    margin: 0;
+    background-color: #3a3838;
+    color: white;
+    border-radius: 0;
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar-toggle {
+    color: white;
+}
+
+li {
+    color:grey;
+}
+
+.orbitron-font {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+}
+
+#ninja-logo {
+    max-height: 250px;
+}

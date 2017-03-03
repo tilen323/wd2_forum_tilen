@@ -4,7 +4,7 @@ import jinja2
 import webapp2
 from handlers.base import MainHandler, AboutHandler, CookieHandler
 from handlers.topics import TopicCreateHandler
-from handlers.topic import TopicHandler
+from handlers.topics import TopicHandler
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler, name="main-page"),
