@@ -11,5 +11,34 @@
             <div class="panel-body">{{ topic.content }}</div>
             <div class="panel-footer">{{ topic.author_email }}, created on {{ topic.created }}</div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form method="post">
+                    <input name="csrf_token" value="{{csrf_token}}">
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <textarea class="form-control" rows="3" name="content" required></textarea>
+                    </div>
+                    <button class="btn btn-primary">Submit</button>
+            </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {% for comment in comments %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{ comment.author_email }}, on {{ comment.created }}
+                        </div>
+                        <div class="panel-body">
+                            {{ comment.content }}
+                        </div>
+
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
     </div>
 {% endblock content %}

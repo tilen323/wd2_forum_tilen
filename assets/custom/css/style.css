@@ -31,3 +31,7 @@ li {
     margin:0;
     text-align: center;
 }
+
+.panel {
+    border-radius: 0;
+}
