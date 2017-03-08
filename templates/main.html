@@ -19,24 +19,31 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Creator</th>
-                  <th>Created on</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for topic in topic_list %}
+
+    <div class="light-grey-box"></div>
+
+    <div class="topic_list_box" style="background-color:white;">
+        <div class="container">
+            <table class="table">
+                <thead>
                     <tr>
-                      <td><a href="/topic/{{ topic.key.id() }}">{{ topic.title }}</a></td>
-                      <td>{{ topic.author_email }}</td>
-                      <td>{{ topic.created }}</td>
+                      <th>Title</th>
+                      <th>Creator</th>
+                      <th>Created on</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-          </table>
+                </thead>
+                <tbody class="topic_list_seznam">
+                    {% for topic in topic_list %}
+                        <tr>
+                          <td><a href="/topic/{{ topic.key.id() }}">{{ topic.title }}</a></td>
+                          <td>{{ topic.author_email }}</td>
+                          <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
     </div>
+
+    <div class="light-grey-box"></div>
 {% endblock content %}

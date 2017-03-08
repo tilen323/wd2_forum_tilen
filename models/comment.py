@@ -3,6 +3,7 @@ from google.appengine.ext import ndb
 class Comment(ndb.Model):
     content = ndb.TextProperty()
     author_email = ndb.StringProperty()
+    author_avatar = ndb.StringProperty()
     topic_id = ndb.IntegerProperty()
     topic_title = ndb.StringProperty()
     created = ndb.DateTimeProperty(auto_now_add=True)

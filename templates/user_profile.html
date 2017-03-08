@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 topic_create_box">
+                <div class="topic_author">
+                    <h2>My Profile:<img class="create_topic_img" src="https://s2.postimg.org/6avule161/profile.png"></h2>
+                </div>
+                <div class="create-form profile_data">
+                    {% for user in user_profile %}
+                    <p>First name: {{ user.first_name }}</p>
+                    <p>Last name: {{ user.last_name }}</p>
+                    <p>Email: {{ user.email }}</p>
+                    <p>Avatar image:<img class="profile_data_img" src="{{ user.avatar_url }}"></p>
+                    {% endfor %}
+                </div><br>
+                <a class="btn btn-default" href="#">Update Profile</a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
