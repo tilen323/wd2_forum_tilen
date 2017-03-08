@@ -35,7 +35,7 @@
                 <tbody class="topic_list_seznam">
                     {% for topic in topic_list %}
                         <tr>
-                          <td><a href="/topic/{{ topic.key.id() }}">{{ topic.title }}</a></td>
+                          <td><a href="/topic/{{ topic.key.id() }}" data-toggle="tooltip" title="{{ topic.title }}">{{ topic.title[0:22] + "..." }}</a></td>
                           <td>{{ topic.author_email }}</td>
                           <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
                         </tr>
@@ -46,4 +46,10 @@
     </div>
 
     <div class="light-grey-box"></div>
+
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 {% endblock content %}

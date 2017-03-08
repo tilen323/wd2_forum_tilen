@@ -2,6 +2,8 @@ import os
 import jinja2
 import webapp2
 from google.appengine.api import users
+from google.appengine.api import memcache
+import uuid
 from models.topic import Topic
 from models.user import User
 
@@ -39,13 +41,17 @@ class BaseHandler(webapp2.RequestHandler):
         else:
             params["login_url"] = users.create_login_url("/")
 
+        csrf_token = str(uuid.uuid4())  # convert UUID to string
+        memcache.add(key=csrf_token, value=True, time=600)
+        params["csrf_token"] = csrf_token
+
         template = jinja_env.get_template(view_filename)
         return self.response.out.write(template.render(params))
 
 
 class MainHandler(BaseHandler):
     def get(self):
-        topic_list = Topic.query(Topic.deleted == False).fetch()
+        topic_list = Topic.query(Topic.deleted == False).order(-Topic.created).fetch()
         params = {"topic_list": topic_list}
         return self.render_template("main.html", params=params)
 
