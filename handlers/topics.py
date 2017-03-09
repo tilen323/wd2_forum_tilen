@@ -36,8 +36,9 @@ class TopicHandler(BaseHandler):
         topic = Topic.get_by_id(int(topic_id))
 
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
+        comments_sum = len(comments)
 
-        params = {"topic": topic, "comments": comments}
+        params = {"topic": topic, "comments": comments, "comments_sum": comments_sum}
 
         return self.render_template("topic.html", params=params)
 
