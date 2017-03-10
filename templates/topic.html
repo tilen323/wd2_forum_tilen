@@ -11,6 +11,11 @@
                 <div class="topic_box">
                     <div class="topic_author">
                         <img class="avatar_topic" src="{{ topic.author_avatar }}"> - {{ topic.author_email }}, {{ topic.created.strftime('on %d.%m.%Y at %H:%M') }}
+                        {% if user %}
+                            {% if user.email == topic.author_email %}
+                                <a class="btn btn-default" href="/topic/{{ topic.key.id() }}/edit">Edit</a>
+                            {% endif %}
+                        {% endif %}
                     </div>
                     <div class="topic_content">{{ topic.content }}</div>
                 </div>

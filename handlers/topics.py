@@ -32,13 +32,13 @@ class TopicCreateHandler(BaseHandler):
 
 class TopicHandler(BaseHandler):
     def get(self, topic_id):
-
+        user = users.get_current_user()
         topic = Topic.get_by_id(int(topic_id))
 
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
         comments_sum = len(comments)
 
-        params = {"topic": topic, "comments": comments, "comments_sum": comments_sum}
+        params = {"topic": topic, "comments": comments, "comments_sum": comments_sum, "user": user}
 
         return self.render_template("topic.html", params=params)
 
@@ -55,7 +55,27 @@ class TopicHandler(BaseHandler):
         author_email = author[0].email
         author_avatar = author[0].avatar_url
 
-        new_comment = Comment(content=comment, author_email=author_email, topic_title=topic.title, topic_id=topic.key.id(), author_avatar=author_avatar)
-        new_comment.put()
+        Comment.create(content=comment, author=author_email, topic=topic, avatar=author_avatar)
+
+        return self.redirect_to("topic", topic_id=topic.key.id())
+
+class EditTopicHandler(BaseHandler):
+    def get(self, topic_id):
+        topic = Topic.get_by_id(int(topic_id))
+        params = {"topic": topic}
+
+        return self.render_template("topic_edit.html", params=params)
+
+    @validate_csrf
+    def post(self, topic_id):
+
+        title = self.request.get("title")
+        content = self.request.get("content")
+
+        topic = Topic.get_by_id(int(topic_id))
+
+        topic.title = title
+        topic.content = content
+        topic.put()
 
         return self.redirect_to("topic", topic_id=topic.key.id())
