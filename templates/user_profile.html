@@ -20,5 +20,28 @@
                 <a class="btn btn-default" href="#">Update Profile</a>
             </div>
         </div>
+
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="col-sm-6 col-sm-offset-3">
+                {% if user_comments_sum %}
+                    <div>
+                        <h3>Comments ({{ user_comments_sum }}):</h3>
+                    </div>
+                    {% endif %}
+
+                    {% for comment in user_comments %}
+                    <div style="margin-bottom: 20px;" class="topic_box">
+                        <div class="topic_author">
+                            <p style="margin-top:8px;">Topic title: {{ comment.topic_title[0:55] + "..." }}</p>
+                            <a href="/topic/{{ comment.topic_id }}" data-toggle="tooltip" title="Go to topic"><img style="margin-top: -50px;" class="create_topic_img" src="https://s28.postimg.org/6o7cggcod/pointing_left.png"></a>
+
+                        </div>
+                        <div class="topic_content">
+                            <p>Commnet: {{ comment.content }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock content %}

@@ -11,9 +11,38 @@
                 <div class="topic_box">
                     <div class="topic_author">
                         <img class="avatar_topic" src="{{ topic.author_avatar }}"> - {{ topic.author_email }}, {{ topic.created.strftime('on %d.%m.%Y at %H:%M') }}
+
                         {% if user %}
-                            {% if user.email == topic.author_email %}
-                                <a class="btn btn-default" href="/topic/{{ topic.key.id() }}/edit">Edit</a>
+                            {% if user.email == topic.author_email or user_admin %}
+                                <div class="edit_delete">
+
+                                    <a href="#" data-toggle="modal" data-target="#deleteTopicModal"><img class="create_topic_img" src="https://s22.postimg.org/4px6u3469/cancel.png"></a>
+                                    <a href="/topic/{{ topic.key.id() }}/edit" data-toggle="tooltip" title="Edit topic"><img class="create_topic_img" src="https://s21.postimg.org/t6we2pp4n/minus.png"></a>
+                                    <!-- Modal - delete topic -->
+                                    <div class="modal fade" id="deleteTopicModal" tabindex="-1" role="dialog" aria-labelledby="deleteTopicModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <form method="post" action="/topic/{{topic.key.id()}}/delete">
+                                                <div class="modal-content">
+
+                                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+
+                                                    <div class="modal-body">
+                                                        <p>
+                                                            Do you really want to delete this topic?
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger">Delete topic</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- End modal - delete topic -->
+
+                                </div>
                             {% endif %}
                         {% endif %}
                     </div>
@@ -23,6 +52,7 @@
 
             <div class="row">
                 <div class="col-sm-offset-1 col-sm-10">
+
                     {% if comments %}
                     <div>
                         <h3>Comments ({{ comments_sum }}):</h3>
@@ -37,8 +67,8 @@
                         <div class="topic_content">{{ comment.content }}</div>
                     </div>
                     {% endfor %}
-
                 </div>
+
                 <div style="margin-bottom: 80px;" class="col-sm-offset-2 col-sm-8">
                     <form method="post">
                         <input type="hidden" name="csrf_token" value="{{csrf_token}}">

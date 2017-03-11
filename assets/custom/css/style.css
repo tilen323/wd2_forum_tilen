@@ -96,6 +96,18 @@ li {
     padding: 10px;
     background-color: #939393;
     color: white;
+    font-size: 125%;
+}
+
+.edit_delete img {
+    max-height: 35px;
+    margin-top: -35px;
+}
+
+.modal-body {
+    background-color: #3a3838;
+    color: white;
+    padding-top: 25px;
 }
 
 .topic_content {

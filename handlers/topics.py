@@ -21,6 +21,7 @@ class TopicCreateHandler(BaseHandler):
 
         title = self.request.get("title")
         content = self.request.get("content")
+
         author = User.query(User.email == user.email()).fetch()
         author_email = author[0].email
         author_avatar = author[0].avatar_url
@@ -30,10 +31,11 @@ class TopicCreateHandler(BaseHandler):
 
         return self.redirect_to("topic", topic_id=new_topic.key.id())
 
+
 class TopicHandler(BaseHandler):
     def get(self, topic_id):
-        user = users.get_current_user()
         topic = Topic.get_by_id(int(topic_id))
+        user = users.get_current_user()
 
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
         comments_sum = len(comments)
@@ -44,13 +46,14 @@ class TopicHandler(BaseHandler):
 
     @validate_csrf
     def post(self, topic_id):
+        topic = Topic.get_by_id(int(topic_id))
         user = users.get_current_user()
+
         if not user:
             return self.write("you are not loged in!")
 
-
-        topic = Topic.get_by_id(int(topic_id))
         comment = self.request.get("content")
+
         author = User.query(User.email == user.email()).fetch()
         author_email = author[0].email
         author_avatar = author[0].avatar_url
@@ -62,20 +65,32 @@ class TopicHandler(BaseHandler):
 class EditTopicHandler(BaseHandler):
     def get(self, topic_id):
         topic = Topic.get_by_id(int(topic_id))
+
         params = {"topic": topic}
 
         return self.render_template("topic_edit.html", params=params)
 
     @validate_csrf
     def post(self, topic_id):
+        topic = Topic.get_by_id(int(topic_id))
+        user = users.get_current_user()
 
         title = self.request.get("title")
         content = self.request.get("content")
 
-        topic = Topic.get_by_id(int(topic_id))
-
-        topic.title = title
-        topic.content = content
-        topic.put()
+        if user.email() == topic.author_email or users.is_current_user_admin():
+            Topic.edit(topic=topic, title=title, content=content)
 
         return self.redirect_to("topic", topic_id=topic.key.id())
+
+class DeleteTopicHandler(BaseHandler):
+    @validate_csrf
+    def post(self, topic_id):
+        topic = Topic.get_by_id(int(topic_id))
+        user = users.get_current_user()
+
+        if user.email() == topic.author_email or users.is_current_user_admin():
+            Topic.delete(topic=topic)
+
+        return self.redirect_to("main-page")
+

@@ -36,6 +36,9 @@ class BaseHandler(webapp2.RequestHandler):
         # google login
         user = users.get_current_user()
         if user:
+            if users.is_current_user_admin():
+                user_admin = True
+                params["user_admin"] = user_admin
             params["user"] = User.get_or_create(user.email())
             params["logout_url"] = users.create_logout_url("/")
         else:
