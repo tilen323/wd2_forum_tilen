@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}User Edit{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 topic_create_box">
+                <div class="topic_author">
+                    <h2>Edit Profile:<img class="create_topic_img" src="https://s2.postimg.org/6avule161/profile.png"></h2>
+                </div>
+                <div class="create-form profile_data">
+                    <form action="/profile/{{user_profile.key.id()}}/edit" method="post">
+
+                        <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+
+                        <div class="form-group">
+                            <label>First name:</label>
+                            <input class="form-control" name="first_name" value="{{ user_profile.first_name }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Last name:</label>
+                            <input class="form-control" name="last_name" value="{{ user_profile.last_name }}" required>
+                        </div>
+
+                        <div class="avatar_radio">
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s30.postimg.org/6mdag8cip/ninja.png" checked>
+                                <img class="avatar_select" src="https://s30.postimg.org/6mdag8cip/ninja.png">
+                            </label>
+
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s8.postimg.org/8bj5wxwzp/solider.png">
+                                <img class="avatar_select" src="https://s8.postimg.org/8bj5wxwzp/solider.png">
+                            </label>
+
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s15.postimg.org/luvcukhez/astronaut.png">
+                                <img class="avatar_select" src="https://s15.postimg.org/luvcukhez/astronaut.png">
+                            </label>
+
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s22.postimg.org/bxscbqyhd/firewoman.png">
+                                <img class="avatar_select" src="https://s22.postimg.org/bxscbqyhd/firewoman.png">
+                            </label>
+
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s4.postimg.org/cqkic7iod/graduate.png">
+                                <img class="avatar_select" src="https://s4.postimg.org/cqkic7iod/graduate.png">
+                            </label>
+
+                            <label class="radio-inline"><input type="radio" name="avatar_url" value="https://s11.postimg.org/51qcwnhtf/robot.png">
+                                <img class="avatar_select" src="https://s11.postimg.org/51qcwnhtf/robot.png">
+                            </label><br><br>
+                        </div>
+                        <button class="btn btn-default">Edit Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

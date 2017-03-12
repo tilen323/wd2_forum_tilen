@@ -47,6 +47,10 @@ li {
     height: 25px;
 }
 
+.margin-grey-box {
+    margin-bottom:100px;
+}
+
 .topic_list_box {
     font-size: 125%;
 }
@@ -102,6 +106,15 @@ li {
 .edit_delete img {
     max-height: 35px;
     margin-top: -35px;
+}
+
+.avatar_select {
+    max-height: 50px;
+    margin-top: 15px;
+}
+
+.avatar_radio input {
+    margin-top:15px;
 }
 
 .modal-body {

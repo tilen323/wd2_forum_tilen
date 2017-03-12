@@ -17,7 +17,15 @@ class User(ndb.Model):
             user = User(email=email)
             user.put()
 
-
-
-
         return user
+
+    @classmethod
+    def edit_profile(cls, user_profile, first_name, last_name, avatar_url):
+
+        user_profile.first_name = first_name
+        user_profile.last_name = last_name
+        user_profile.avatar_url = avatar_url
+        user_profile.put()
+
+        return user_profile
+

@@ -14,12 +14,12 @@ indexes:
   properties:
   - name: author_email
   - name: created
-    direction: desc
 
 - kind: Comment
   properties:
   - name: author_email
   - name: created
+    direction: desc
 
 - kind: Comment
   properties:

@@ -9,15 +9,17 @@
                 <div class="topic_author">
                     <h2>My Profile:<img class="create_topic_img" src="https://s2.postimg.org/6avule161/profile.png"></h2>
                 </div>
+                {% for user in user_profile %}
                 <div class="create-form profile_data">
-                    {% for user in user_profile %}
+
                     <p>First name: {{ user.first_name }}</p>
                     <p>Last name: {{ user.last_name }}</p>
                     <p>Email: {{ user.email }}</p>
-                    <p>Avatar image:<img class="profile_data_img" src="{{ user.avatar_url }}"></p>
-                    {% endfor %}
+                    <p>Avatar image: <img class="profile_data_img" src="{{ user.avatar_url }}"></p>
+
                 </div><br>
-                <a class="btn btn-default" href="#">Update Profile</a>
+                <a class="btn btn-default" href="/profile/{{user.key.id()}}/edit">Edit Profile</a>
+                {% endfor %}
             </div>
         </div>
 
