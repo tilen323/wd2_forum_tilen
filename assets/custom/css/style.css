@@ -68,6 +68,14 @@ li {
     background-color: #d3d3d3;
 }
 
+.profile_topic_title {
+    color:white;
+}
+
+.profile_topic_title:hover {
+    color:white;
+}
+
 .profile_data p {
     font-size: 125%;
 }

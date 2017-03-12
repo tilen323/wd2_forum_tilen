@@ -15,10 +15,12 @@
                     <p>First name: {{ user.first_name }}</p>
                     <p>Last name: {{ user.last_name }}</p>
                     <p>Email: {{ user.email }}</p>
-                    <p>Avatar image: <img class="profile_data_img" src="{{ user.avatar_url }}"></p>
+                    <p>Profile image: <img class="profile_data_img" src="{{ user.avatar_url }}"></p><br>
 
-                </div><br>
-                <a class="btn btn-default" href="/profile/{{user.key.id()}}/edit">Edit Profile</a>
+                    <a class="btn btn-default" href="/profile/{{user.key.id()}}/edit">Edit Profile</a>
+
+                </div>
+
                 {% endfor %}
             </div>
         </div>
@@ -34,8 +36,7 @@
                     {% for comment in user_comments %}
                     <div style="margin-bottom: 20px;" class="topic_box">
                         <div class="topic_author">
-                            <p style="margin-top:8px;">Topic title: {{ comment.topic_title[0:55] + "..." }}</p>
-                            <a href="/topic/{{ comment.topic_id }}" data-toggle="tooltip" title="Go to topic"><img style="margin-top: -50px;" class="create_topic_img" src="https://s28.postimg.org/6o7cggcod/pointing_left.png"></a>
+                            <a class="profile_topic_title" href="/topic/{{ comment.topic_id }}" data-toggle="tooltip" title="{{ comment.topic_title }}">Topic title: {{ comment.topic_title[0:55] + "..." }}</a>
 
                         </div>
                         <div class="topic_content">
