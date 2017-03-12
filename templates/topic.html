@@ -13,11 +13,33 @@
                         <img class="avatar_topic" src="{{ topic.author_avatar }}"> - {{ topic.author_email }}, {{ topic.created.strftime('on %d.%m.%Y at %H:%M') }}
 
                         {% if user %}
+                            {% if not user.email == topic.author_email %}
+                                {% if not subscriber %}
+                                <form action="/add_subscriber/{{ topic.key.id() }}" method="post">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                                    <input class="create_topic_img sub_img" type="image" src="https://s15.postimg.org/6nwlnmesb/plus.png" data-toggle="tooltip" title="Subscribe" alt="submit">
+                                </form>
+                                {% else %}
+                                <form action="/delete_subscriber/{{ topic.key.id() }}" method="post">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                                    <input class="create_topic_img sub_img" type="image" src="https://s21.postimg.org/t6we2pp4n/minus.png" data-toggle="tooltip" title="Unsubscribe" alt="submit">
+                                </form>
+                                {% endif %}
+                            {% endif %}
+
                             {% if user.email == topic.author_email or user_admin %}
                                 <div class="edit_delete">
 
-                                    <a href="#" data-toggle="modal" data-target="#deleteTopicModal"><img class="create_topic_img" src="https://s22.postimg.org/4px6u3469/cancel.png"></a>
-                                    <a href="/topic/{{ topic.key.id() }}/edit" data-toggle="tooltip" title="Edit topic"><img class="create_topic_img" src="https://s21.postimg.org/t6we2pp4n/minus.png"></a>
+
+
+                                    <a href="#" data-toggle="modal" data-target="#deleteTopicModal">
+                                        <img class="create_topic_img" src="https://s22.postimg.org/4px6u3469/cancel.png">
+                                    </a>
+
+                                    <a href="/topic/{{ topic.key.id() }}/edit" data-toggle="tooltip" title="Edit topic">
+                                        <img class="create_topic_img" src="https://s30.postimg.org/pz51viyk1/speech_bubble.png">
+                                    </a>
+
                                     <!-- Modal - delete topic -->
                                     <div class="modal fade" id="deleteTopicModal" tabindex="-1" role="dialog" aria-labelledby="deleteTopicModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

@@ -2,6 +2,7 @@ from handlers.base import BaseHandler
 from models.topic import Topic
 from models.comment import Comment
 from models.user import User
+from models.subscription import Subscription
 from google.appengine.api import users, memcache
 import uuid
 from utils.decorators import validate_csrf
@@ -40,7 +41,11 @@ class TopicHandler(BaseHandler):
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
         comments_sum = len(comments)
 
-        params = {"topic": topic, "comments": comments, "comments_sum": comments_sum, "user": user}
+        subscriber = Subscription.query(Subscription.topic_id == topic.key.id(),
+                                        Subscription.deleted == False,
+                                        Subscription.subscriber_email == user.email()).get()
+
+        params = {"topic": topic, "comments": comments, "comments_sum": comments_sum, "user": user, "subscriber": subscriber}
 
         return self.render_template("topic.html", params=params)
 

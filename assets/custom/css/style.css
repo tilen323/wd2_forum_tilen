@@ -84,6 +84,7 @@ li {
     max-height: 50px;
 }
 
+
 .topic_create_box {
     margin-top: 5%;
 }
@@ -92,6 +93,11 @@ li {
     max-height: 50px;
     margin: -10px 10px 10px 0;;
     float: right;
+}
+
+.sub_img {
+    margin-top: -38px;
+    max-height: 40px;
 }
 
 .create-form {

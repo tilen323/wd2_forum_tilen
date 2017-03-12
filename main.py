@@ -9,6 +9,7 @@ from handlers.topics import EditTopicHandler
 from handlers.topics import DeleteTopicHandler
 from handlers.user import EditProfileHandler
 from handlers.user import UserProfileHandler
+from handlers.subscription import SubscriptionHandler, DeleteSubscription
 from handlers.admin_test import AdminTestHandler
 from workers.email_comment_worker import EmailNewCommentWorker
 
@@ -19,10 +20,12 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/topic/create', TopicCreateHandler, name="topic_create"),
     webapp2.Route('/topic/<topic_id:\d+>', TopicHandler, name="topic"),
     webapp2.Route('/user/profile', UserProfileHandler, name="user-profile"),
-    webapp2.Route('/topic/<topic_id:\d+>/edit', EditTopicHandler),
-    webapp2.Route('/topic/<topic_id:\d+>/delete', DeleteTopicHandler),
-    webapp2.Route('/admin-test', AdminTestHandler),
-    webapp2.Route('/profile/<user_id:\d+>/edit', EditProfileHandler),
+    webapp2.Route('/topic/<topic_id:\d+>/edit', EditTopicHandler, name="edit-topic"),
+    webapp2.Route('/topic/<topic_id:\d+>/delete', DeleteTopicHandler, name="delete-topic"),
+    webapp2.Route('/admin-test', AdminTestHandler, name="admin-test"),
+    webapp2.Route('/profile/<user_id:\d+>/edit', EditProfileHandler, name="edit-profile"),
+    webapp2.Route('/add_subscriber/<topic_id:\d+>', SubscriptionHandler),
+    webapp2.Route('/delete_subscriber/<topic_id:\d+>', DeleteSubscription),
 
     #tasks
     webapp2.Route("/task/email-new-comment", EmailNewCommentWorker)
