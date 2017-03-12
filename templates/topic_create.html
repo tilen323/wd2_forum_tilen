@@ -10,6 +10,7 @@
                     <h2>Create Topic:<img class="create_topic_img" src="https://s8.postimg.org/sqpim1d5h/printer.png"></h2>
                 </div>
                 <div style="margin-bottom: 80px;" class="create-form">
+                    {% if user %}
                     <form method="post">
 
                         <input type="hidden" name="csrf_token" value="{{csrf_token}}">
@@ -23,6 +24,9 @@
                         </div>
                         <button class="btn btn-default">Submit</button>
                     </form>
+                    {% else %}
+                    <p style="font-size:125%;">You have to be logged in to make a new topic!</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

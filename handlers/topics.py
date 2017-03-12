@@ -41,9 +41,12 @@ class TopicHandler(BaseHandler):
         comments = Comment.query(Comment.topic_id == topic.key.id(), Comment.deleted == False).order(Comment.created).fetch()
         comments_sum = len(comments)
 
-        subscriber = Subscription.query(Subscription.topic_id == topic.key.id(),
-                                        Subscription.deleted == False,
-                                        Subscription.subscriber_email == user.email()).get()
+        if user:
+            subscriber = Subscription.query(Subscription.topic_id == topic.key.id(),
+                                            Subscription.deleted == False,
+                                            Subscription.subscriber_email == user.email()).get()
+        else:
+            subscriber = ""
 
         params = {"topic": topic, "comments": comments, "comments_sum": comments_sum, "user": user, "subscriber": subscriber}
 

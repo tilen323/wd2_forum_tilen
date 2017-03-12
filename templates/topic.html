@@ -81,6 +81,13 @@
                     </div>
                     {% endif %}
 
+                    {% if not user %}
+                    <div style="margin-bottom: 20px;" class="topic_box">
+                        <div class="topic_content">You have to be logged in to comment on a topic!</div>
+                    </div>
+
+                    {% endif %}
+
                     {% for comment in comments %}
                     <div style="margin-bottom: 20px;" class="topic_box">
                         <div class="topic_author">
@@ -92,6 +99,7 @@
                 </div>
 
                 <div style="margin-bottom: 80px;" class="col-sm-offset-2 col-sm-8">
+                    {% if user %}
                     <form method="post">
                         <input type="hidden" name="csrf_token" value="{{csrf_token}}">
                         <div class="form-group">
@@ -100,6 +108,8 @@
                         </div>
                         <button class="btn btn-default">Submit</button>
                     </form>
+                    {% endif %}
+
                 </div>
             </div>
 
