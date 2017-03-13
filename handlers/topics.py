@@ -67,6 +67,7 @@ class TopicHandler(BaseHandler):
         author_avatar = author[0].avatar_url
 
         Comment.create(content=comment, author=author_email, topic=topic, avatar=author_avatar)
+        Topic.comment_sum_add(topic=topic)
 
         return self.redirect_to("topic", topic_id=topic.key.id())
 

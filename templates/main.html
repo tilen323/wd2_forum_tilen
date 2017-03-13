@@ -30,6 +30,7 @@
                       <th>Topic title:</th>
                       <th>Creator:</th>
                       <th>Created on:</th>
+                      <th>Comments:</th>
                     </tr>
                 </thead>
                 <tbody class="topic_list_seznam">
@@ -38,6 +39,7 @@
                           <td><a href="/topic/{{ topic.key.id() }}" data-toggle="tooltip" title="{{ topic.title }}">{{ topic.title[0:22] + "..." }}</a></td>
                           <td>{{ topic.author_email }}</td>
                           <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
+                          <td>{{ topic.comment_sum }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

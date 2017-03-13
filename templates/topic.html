@@ -17,12 +17,12 @@
                                 {% if not subscriber %}
                                 <form action="/add_subscriber/{{ topic.key.id() }}" method="post">
                                     <input type="hidden" name="csrf_token" value="{{csrf_token}}">
-                                    <input class="create_topic_img sub_img" type="image" src="https://s15.postimg.org/6nwlnmesb/plus.png" data-toggle="tooltip" title="Subscribe" alt="submit">
+                                    <input class="create_topic_img sub_img" type="image" src="https://s15.postimg.org/6nwlnmesb/plus.png" data-toggle="tooltip" title="Subscribe to this topic" alt="submit">
                                 </form>
                                 {% else %}
                                 <form action="/delete_subscriber/{{ topic.key.id() }}" method="post">
                                     <input type="hidden" name="csrf_token" value="{{csrf_token}}">
-                                    <input class="create_topic_img sub_img" type="image" src="https://s21.postimg.org/t6we2pp4n/minus.png" data-toggle="tooltip" title="Unsubscribe" alt="submit">
+                                    <input class="create_topic_img sub_img" type="image" src="https://s21.postimg.org/t6we2pp4n/minus.png" data-toggle="tooltip" title="Unsubscribe from this topic" alt="submit">
                                 </form>
                                 {% endif %}
                             {% endif %}

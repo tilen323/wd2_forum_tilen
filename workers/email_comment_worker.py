@@ -23,5 +23,5 @@ class EmailSubNewCommentWorker(BaseHandler):
 
         mail.send_mail(sender="prevolnik.tilen@gmail.com",
                        to=subscriber_email,
-                       subject="Dobil si nov komentar v topicu %s!" % topic_title,
+                       subject="Dobil si nov komentar v topicu %s, na katerega si narocen!" % topic_title,
                        body="Nov komentar: {}".format(comment_content))
