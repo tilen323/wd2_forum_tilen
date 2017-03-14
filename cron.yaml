@@ -1,0 +1,4 @@
+cron:
+- description: Delete topics older than 30 days
+  url: /cron/delete-topics
+  schedule: every monday 09:00

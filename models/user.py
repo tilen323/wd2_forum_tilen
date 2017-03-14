@@ -5,6 +5,7 @@ class User(ndb.Model):
     last_name = ndb.StringProperty()
     email = ndb.StringProperty()
     avatar_url = ndb.StringProperty(default="https://s30.postimg.org/6mdag8cip/ninja.png")
+    forum_subscription = ndb.BooleanProperty(default=False)
     admin = ndb.BooleanProperty(default=False)
     created = ndb.DateTimeProperty(auto_now_add=True)
     updated = ndb.DateTimeProperty(auto_now=True)
@@ -28,4 +29,5 @@ class User(ndb.Model):
         user_profile.put()
 
         return user_profile
+
 

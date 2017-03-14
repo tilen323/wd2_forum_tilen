@@ -55,6 +55,7 @@ class BaseHandler(webapp2.RequestHandler):
 class MainHandler(BaseHandler):
     def get(self):
         topic_list = Topic.query(Topic.deleted == False).order(-Topic.created).fetch()
+
         params = {"topic_list": topic_list}
         return self.render_template("main.html", params=params)
 

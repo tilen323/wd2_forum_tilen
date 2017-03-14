@@ -32,3 +32,8 @@ indexes:
   - name: deleted
   - name: created
     direction: desc
+
+- kind: Topic
+  properties:
+  - name: deleted
+  - name: updated

@@ -1,10 +1,10 @@
 from handlers.base import BaseHandler
 from google.appengine.api import users, memcache
 import uuid
+
 from utils.decorators import validate_csrf
 from models.subscription import Subscription
 from models.topic import Topic
-
 
 class SubscriptionHandler(BaseHandler):
 
