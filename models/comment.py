@@ -33,3 +33,10 @@ class Comment(ndb.Model):
                                                                          "comment_content": new_comment.content})
 
         return new_comment
+
+    @classmethod
+    def delete_comment(cls, comment):
+        comment.deleted = True
+        comment.put()
+
+        return comment

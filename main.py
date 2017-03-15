@@ -5,6 +5,7 @@ import webapp2
 
 from crons.delete_topics_cron import DeleteTopicsCron
 from handlers.base import MainHandler, AboutHandler, CookieHandler
+from handlers.comment import DeleteCommentHandler
 from handlers.topics import TopicCreateHandler
 from handlers.topics import TopicHandler
 from handlers.topics import EditTopicHandler
@@ -31,6 +32,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/delete_subscriber/<topic_id:\d+>', DeleteSubscriptionHandler),
     webapp2.Route('/forum_subscription/<user_id:\d+>', ForumSubscriptionHandler),
     webapp2.Route('/forum_unsubscribe/<user_id:\d+>', ForumUnsubscribeHandler),
+    webapp2.Route('/delete_comment/<comment_id:\d+>', DeleteCommentHandler),
 
     #tasks
     webapp2.Route("/task/email-new-comment", EmailNewCommentWorker),

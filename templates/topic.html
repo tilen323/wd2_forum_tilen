@@ -92,6 +92,12 @@
                     <div style="margin-bottom: 20px;" class="topic_box">
                         <div class="topic_author">
                              <img class="avatar_topic" src="{{ comment.author_avatar }}"> - {{ comment.author_email }}, {{ comment.created.strftime('on %d.%m.%Y at %H:%M') }}
+                            {% if user.email == comment.author_email or user_admin %}
+                             <form action="/delete_comment/{{ comment.key.id() }}" method="post">
+                                <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                                <input class="create_topic_img sub_img" type="image" src="https://s22.postimg.org/4px6u3469/cancel.png" data-toggle="tooltip" title="Delete comment" alt="submit">
+                             </form>
+                            {% endif %}
                         </div>
                         <div class="topic_content">{{ comment.content }}</div>
                     </div>
