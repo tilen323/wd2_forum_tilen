@@ -11,7 +11,8 @@ from handlers.topics import EditTopicHandler
 from handlers.topics import DeleteTopicHandler
 from handlers.user import EditProfileHandler
 from handlers.user import UserProfileHandler
-from handlers.subscription import SubscriptionHandler, DeleteSubscription
+from handlers.subscription import SubscriptionHandler, DeleteSubscriptionHandler, ForumSubscriptionHandler, \
+    ForumUnsubscribeHandler
 from handlers.admin_test import AdminTestHandler
 from workers.email_comment_worker import EmailNewCommentWorker, EmailSubNewCommentWorker
 
@@ -27,7 +28,9 @@ app = webapp2.WSGIApplication([
     webapp2.Route('/admin-test', AdminTestHandler, name="admin-test"),
     webapp2.Route('/profile/<user_id:\d+>/edit', EditProfileHandler, name="edit-profile"),
     webapp2.Route('/add_subscriber/<topic_id:\d+>', SubscriptionHandler),
-    webapp2.Route('/delete_subscriber/<topic_id:\d+>', DeleteSubscription),
+    webapp2.Route('/delete_subscriber/<topic_id:\d+>', DeleteSubscriptionHandler),
+    webapp2.Route('/forum_subscription/<user_id:\d+>', ForumSubscriptionHandler),
+    webapp2.Route('/forum_unsubscribe/<user_id:\d+>', ForumUnsubscribeHandler),
 
     #tasks
     webapp2.Route("/task/email-new-comment", EmailNewCommentWorker),

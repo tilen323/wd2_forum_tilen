@@ -11,6 +11,12 @@ from utils.decorators import validate_csrf
 class TopicCreateHandler(BaseHandler):
     def get(self):
 
+        """ To je zacasna koda, da User dobi default vrednosti
+
+        user_list = User.query().fetch()
+        User.set_deleted_false(user_list=user_list)
+        """
+
         return self.render_template("topic_create.html")
 
     @validate_csrf

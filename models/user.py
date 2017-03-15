@@ -6,6 +6,7 @@ class User(ndb.Model):
     email = ndb.StringProperty()
     avatar_url = ndb.StringProperty(default="https://s30.postimg.org/6mdag8cip/ninja.png")
     forum_subscription = ndb.BooleanProperty(default=False)
+    deleted = ndb.BooleanProperty(default=False)
     admin = ndb.BooleanProperty(default=False)
     created = ndb.DateTimeProperty(auto_now_add=True)
     updated = ndb.DateTimeProperty(auto_now=True)
@@ -30,4 +31,27 @@ class User(ndb.Model):
 
         return user_profile
 
+    @classmethod
+    def subscribe_to_forum(cls, user_profile):
 
+        user_profile.forum_subscription = True
+        user_profile.put()
+
+        return user_profile
+
+    @classmethod
+    def unsubscribe_from_forum(cls, user_profile):
+
+        user_profile.forum_subscription = False
+        user_profile.put()
+
+        return user_profile
+
+    @classmethod
+    def set_deleted_false(cls, user_list):
+
+        for profile in user_list:
+            profile.deleted = False
+            profile.put()
+
+        return user_list

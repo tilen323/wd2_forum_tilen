@@ -55,8 +55,14 @@ class BaseHandler(webapp2.RequestHandler):
 class MainHandler(BaseHandler):
     def get(self):
         topic_list = Topic.query(Topic.deleted == False).order(-Topic.created).fetch()
+        user = users.get_current_user()
 
-        params = {"topic_list": topic_list}
+        if user:
+            forum_subscriber = User.query(User.email == user.email()).get()
+        else:
+            forum_subscriber = ""
+
+        params = {"topic_list": topic_list, "forum_subscriber": forum_subscriber}
         return self.render_template("main.html", params=params)
 
 
