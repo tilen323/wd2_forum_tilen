@@ -3,7 +3,9 @@ import os
 import jinja2
 import webapp2
 
+from crons.delete_comment_cron import DeleteCommentsCron
 from crons.delete_topics_cron import DeleteTopicsCron
+from crons.subs_mail_send import SubMailSendHandler
 from handlers.base import MainHandler, AboutHandler, CookieHandler
 from handlers.comment import DeleteCommentHandler
 from handlers.topics import TopicCreateHandler
@@ -39,6 +41,8 @@ app = webapp2.WSGIApplication([
     webapp2.Route("/task/email-sub-new-comment", EmailSubNewCommentWorker),
 
     #Cron
-    webapp2.Route("/cron/delete-topics", DeleteTopicsCron, name="cron-topics_delete")
+    webapp2.Route("/cron/delete-topics", DeleteTopicsCron, name="cron-topics-delete"),
+    webapp2.Route("/cron/delete-comments", DeleteCommentsCron, name="cron-comment-delete"),
+    webapp2.Route("/cron/subs_mail_send", SubMailSendHandler, name="cron-subs-mail-send"),
 
 ], debug=True)
