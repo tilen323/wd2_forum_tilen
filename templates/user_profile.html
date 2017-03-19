@@ -9,19 +9,19 @@
                 <div class="topic_author">
                     <h2>My Profile:<img class="create_topic_img" src="https://s2.postimg.org/6avule161/profile.png"></h2>
                 </div>
-                {% for user in user_profile %}
+                {% if user_profile %}
                 <div class="create-form profile_data">
 
-                    <p>First name: {{ user.first_name }}</p>
-                    <p>Last name: {{ user.last_name }}</p>
-                    <p>Email: {{ user.email }}</p>
-                    <p>Profile image: <img class="profile_data_img" src="{{ user.avatar_url }}"></p><br>
+                    <p>First name: {{ user_profile.first_name }}</p>
+                    <p>Last name: {{ user_profile.last_name }}</p>
+                    <p>Email: {{ user_profile.email }}</p>
+                    <p>Profile image: <img class="profile_data_img" src="{{ user_profile.avatar_url }}"></p><br>
 
-                    <a class="btn btn-default" href="/profile/{{user.key.id()}}/edit">Edit Profile</a>
+                    <a class="btn btn-default" href="/profile/{{user_profile.key.id()}}/edit">Edit Profile</a>
 
                 </div>
 
-                {% endfor %}
+                {% endif %}
             </div>
         </div>
 

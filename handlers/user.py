@@ -8,7 +8,7 @@ from utils.decorators import validate_csrf
 class UserProfileHandler(BaseHandler):
     def get(self):
         user = users.get_current_user()
-        user_profile = User.query(User.email == user.email()).fetch()
+        user_profile = User.query(User.email == user.email()).get()
         user_comments = Comment.query(Comment.author_email == user.email()).order(-Comment.created).fetch()
         user_comments_sum = len(user_comments)
 

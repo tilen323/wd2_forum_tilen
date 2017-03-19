@@ -15,19 +15,21 @@
                     <h1 class="orbitron-font">Ninja Tech Forum</h1><br>
                     <p>The best tehnical forum!</p><br>
                     {% if user %}
-                        {% if not forum_subscriber.forum_subscription %}
-                            <form action="/forum_subscription/{{ forum_subscriber.key.id() }}" method="post">
-                                <input type="hidden" name="csrf_token" value="{{csrf_token}}">
-                                <p>Subscribe to forum</p>
-                                <button class="btn btn-default">Here!</button>
-                            </form>
+                        {% if forum_subscriber %}
+                            {% if not forum_subscriber.forum_subscription %}
+                                <form action="/forum_subscription/{{ forum_subscriber.key.id() }}" method="post">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                                    <p>Subscribe to forum</p>
+                                    <button class="btn btn-default">Here!</button>
+                                </form>
 
-                        {% else %}
-                            <form action="/forum_unsubscribe/{{ forum_subscriber.key.id() }}" method="post">
-                                <input type="hidden" name="csrf_token" value="{{csrf_token}}">
-                                <p>Unsubscribe from forum</p>
-                                <button class="btn btn-default">Here!</button>
-                            </form>
+                            {% else %}
+                                <form action="/forum_unsubscribe/{{ forum_subscriber.key.id() }}" method="post">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                                    <p>Unsubscribe from forum</p>
+                                    <button class="btn btn-default">Here!</button>
+                                </form>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                 </div>

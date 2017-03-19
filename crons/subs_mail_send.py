@@ -22,5 +22,5 @@ class SubMailSendHandler(BaseHandler):
             for subscriber in subscribers:
                 mail.send_mail(sender="prevolnik.tilen@gmail.com",
                                to=subscriber.email,
-                               subject="Here are the lastest topics from our forum!",
+                               subject="Here are the latest topics from our forum!",
                                body="Topics: %s" % topic_link)

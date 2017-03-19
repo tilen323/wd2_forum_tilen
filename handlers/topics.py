@@ -30,8 +30,13 @@ class TopicCreateHandler(BaseHandler):
         content = self.request.get("content")
 
         author = User.query(User.email == user.email()).fetch()
-        author_email = author[0].email
-        author_avatar = author[0].avatar_url
+        if author:
+            author_email = author[0].email
+            author_avatar = author[0].avatar_url
+
+        else:
+            author_email = ""
+            author_avatar = ""
 
         new_topic = Topic(title=title, content=content, author_email=author_email, author_avatar=author_avatar)
         new_topic.put()
