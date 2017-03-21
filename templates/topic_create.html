@@ -14,15 +14,23 @@
                     <form method="post">
 
                         <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+
                         <div class="form-group">
                             <label>Title:</label>
                             <input class="form-control" name="title" required>
                         </div>
+
                         <div class="form-group">
                             <label>Content:</label>
                             <textarea class="form-control" rows="6" name="content" required></textarea>
                         </div>
-                        <button class="btn btn-default">Submit</button>
+
+                        <div class="form-group">
+                            <label id="create_topic_sum_label"></label>
+                            <input class="form-control" id="create_topic_sum" required>
+                        </div>
+
+                        <button id="create_topic_btn" class="btn btn-default">Submit</button>
                     </form>
                     {% else %}
                     <p style="font-size:125%;">You have to be logged in to make a new topic!</p>
@@ -32,3 +40,30 @@
         </div>
     </div>
 {% endblock content %}
+
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        var numOne = Math.floor((Math.random() * 9) + 1);
+        var numTwo = Math.floor((Math.random() * 9) + 1);
+        var numSum = numOne + numTwo
+
+        $("#create_topic_sum_label").text("What is the sum of " + numOne + " and " + numTwo + "?");
+
+        var createTopicSum = $("#create_topic_sum");
+        var createTopicBtn = $("#create_topic_btn");
+
+        createTopicBtn.click(function(e) {
+           if (createTopicSum.val() === numSum.toString()){
+               createTopicBtn.hide();
+               console.log("yaaay");
+           }
+           else {
+               alert("You shall not pass! You are a bot or very bad at math");
+               e.preventDefault();
+           }
+        });
+    });
+</script>
+{% endblock scripts %}

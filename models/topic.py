@@ -12,28 +12,32 @@ class Topic(ndb.Model):
     deleted = ndb.BooleanProperty(default=False)
 
     @classmethod
+    def add_topic(cls, title, content, author_email, author_avatar):
+        new_topic = Topic(title=title, content=content, author_email=author_email, author_avatar=author_avatar)
+        new_topic.put()
+        return new_topic
+
+    @classmethod
     def edit(cls, topic, title, content):
         topic.title = title
         topic.content = content
         topic.put()
-
         return topic
 
     @classmethod
     def delete(cls, topic):
         topic.deleted = True
         topic.put()
-
         return topic
 
     @classmethod
     def comment_sum_add(cls, topic):
-        comment_list = Comment.query(Comment.topic_id == topic.key.id(),
-                                     Comment.deleted == False).fetch()
-
-        comment_sum = len(comment_list)
-
-        topic.comment_sum = comment_sum
+        topic.comment_sum += 1
         topic.put()
+        return topic
 
+    @classmethod
+    def comment_sum_minus_one(cls, topic):
+        topic.comment_sum -= 1
+        topic.put()
         return topic

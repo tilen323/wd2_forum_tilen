@@ -29,19 +29,19 @@ class TopicCreateHandler(BaseHandler):
         title = self.request.get("title")
         content = self.request.get("content")
 
-        author = User.query(User.email == user.email()).fetch()
+        author = User.query(User.email == user.email()).get()
+        topic = Topic.query(Topic.title == title).get()        # check if topic exists
+
         if author:
-            author_email = author[0].email
-            author_avatar = author[0].avatar_url
+            if not topic:                                      # if not, create new one
+                author_email = author.email
+                author_avatar = author.avatar_url
 
-        else:
-            author_email = ""
-            author_avatar = ""
+                new_topic = Topic.add_topic(title=title, content=content, author_email=author_email, author_avatar=author_avatar)
 
-        new_topic = Topic(title=title, content=content, author_email=author_email, author_avatar=author_avatar)
-        new_topic.put()
-
-        return self.redirect_to("topic", topic_id=new_topic.key.id())
+                return self.redirect_to("topic", topic_id=new_topic.key.id())
+            else:
+                return self.write("Topic with the same title already exists!")
 
 
 class TopicHandler(BaseHandler):
