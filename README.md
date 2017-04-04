@@ -1,10 +1,12 @@
 # About
 
-GAE boilerplate for SmartNinja **Web development 2** course.
+Ninja Tech Forum - GAE web application - backend Python
 
-# Usage
+- Google login (customize your profile)
+- NoSQL database
+- CSRF & Memcache
+- Email & background tasks (get email if comment on your topic)
+- CRON jobs (send email to subscribers)
+- JavaScript & jQuery (form check if bot)
 
-1. Click on Download ZIP
-2. Save on your disk and unzip
-3. Change the application ID in app.yaml
-4. Build something nice ;)
+url: http://wd2-forum-tilen.appspot.com/
