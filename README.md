@@ -4,9 +4,9 @@ Ninja Tech Forum - GAE web application - backend Python
 
 - Google login (customize your profile)
 - NoSQL database
-- CSRF & Memcache
+- CSRF protection
 - Email & background tasks (get email if comment on your topic)
 - CRON jobs (send email to subscribers)
-- JavaScript & jQuery (form check if bot)
+- jQuery (form check if bot)
 
 url: http://wd2-forum-tilen.appspot.com/
