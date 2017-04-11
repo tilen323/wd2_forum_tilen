@@ -29,6 +29,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         # cookies
         cookie = self.request.cookies.get("ninja-cookie")
+        self.response.headers.add_header('Set-Cookie', 'referer=%s; Path=/' % self.request.referer)
 
         if cookie:
             params["piskotki"] = True
@@ -70,7 +71,9 @@ class AboutHandler(BaseHandler):
     def get(self):
         return self.render_template("about.html")
 
+
 class CookieHandler(BaseHandler):
     def post(self):
         self.response.set_cookie(key="ninja-cookie", value="accepted")
-        return self.redirect_to("main-page")
+        referer = str(self.request.cookies.get('referer'))
+        return self.redirect(referer)

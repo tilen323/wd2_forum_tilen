@@ -42,7 +42,7 @@
 
     <div class="topic_list_box" style="background-color:white;">
         <div class="container">
-            <table class="table">
+            <table id="topicTable" class="table">
                 <thead>
                     <tr>
                       <th>Topic title:</th>
@@ -53,8 +53,8 @@
                 </thead>
                 <tbody class="topic_list_seznam">
                     {% for topic in topic_list %}
-                        <tr>
-                          <td><a href="/topic/{{ topic.key.id() }}" data-toggle="tooltip" title="{{ topic.title }}">{{ topic.title[0:22] + "..." }}</a></td>
+                        <tr class="clickable-row" data-href="/topic/{{ topic.key.id() }}">
+                          <td>{{ topic.title[0:22] + "..." }}</td>
                           <td>{{ topic.author_email }}</td>
                           <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
                           <td>{{ topic.comment_sum }}</td>
@@ -67,9 +67,21 @@
 
     <div class="light-grey-box-2 margin-grey-box"></div>
 
-    <script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    </script>
+
 {% endblock content %}
+
+{% block script %}
+
+<!-- datatable -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#topicTable").DataTable();
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
+{% endblock script %}

@@ -51,6 +51,10 @@ li {
     margin-bottom:100px;
 }
 
+.clickable-row {
+    cursor: pointer;
+}
+
 .topic_list_box {
     font-size: 125%;
 }
