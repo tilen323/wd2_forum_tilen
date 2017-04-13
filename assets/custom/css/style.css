@@ -13,6 +13,8 @@ body {
     background-color: #ececec;
 }
 
+/* Navbar */
+
 .navbar {
     margin: 0;
     background-color: #3a3838;
@@ -23,14 +25,30 @@ li {
     color:grey;
 }
 
+/* Font */
 .orbitron-font {
     font-family: 'Orbitron', sans-serif;
     font-weight: bold;
 }
 
+/* Jumbotron */
+
 #ninja-logo {
     max-height: 250px;
 }
+
+.jumbotronSubP {
+    float: left;
+}
+
+.jumbotronSubBtn {
+    float: left;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+/* Cookie alert */
 
 .alert {
     border-radius: 0;
@@ -42,6 +60,8 @@ li {
     border-radius: 0;
 }
 
+/* Empty div */
+
 .light-grey-box {
     background-color: #f6f6f6;
     height: 25px;
@@ -51,21 +71,20 @@ li {
     margin-bottom:100px;
 }
 
+/* Topic list */
+
 .clickable-row {
     cursor: pointer;
 }
 
 .topic_list_box {
     font-size: 125%;
+    padding: 15px 0px;
 }
 
 .topic_list_box a {
     font-weight: bold;
     color: #3a3838;
-}
-
-.topic_list_seznam tr:nth-child(2n+1) {
-    background-color: #f6f6f6;
 }
 
 .topic_list_seznam tr:hover {
@@ -88,6 +107,7 @@ li {
     max-height: 50px;
 }
 
+/* Topic create */
 
 .topic_create_box {
     margin-top: 5%;
@@ -141,6 +161,8 @@ li {
     padding-top: 25px;
 }
 
+/* Topic details */
+
 .topic_content {
     padding: 15px;
     background-color: white;
@@ -154,6 +176,8 @@ li {
 .comment-row {
     margin-bottom: 30px;
 }
+
+/* Footer */
 
 .footer {
     position: absolute;
