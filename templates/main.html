@@ -42,7 +42,7 @@
 
     <div class="topic_list_box" style="background-color:white;">
         <div class="container">
-            <table id="topicTable" class="table display">
+            <table id="topicTable" class="table display" cellspacing="0">
                 <thead>
                     <tr>
                       <th>Topic title:</th>
@@ -55,10 +55,10 @@
                 <tbody class="topic_list_seznam">
                     {% for topic in topic_list %}
                         <tr class="clickable-row" data-href="/topic/{{ topic.key.id() }}">
-                          <td>{{ topic.title[0:30] + "..." }}</td>
-                           <td>{{ topic.comment_sum }}</td>
-                          <td>{{ topic.author_email.partition("@")[0] }}</td>
-                          <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
+                            <td>{{ topic.title[0:30] + "..." }}</td>
+                            <td>{{ topic.comment_sum }}</td>
+                            <td>{{ topic.author_email.partition("@")[0] }}</td>
+                            <td>{{ topic.created.strftime('%d.%m.%Y at %H:%M') }}</td>
 
                         </tr>
                     {% endfor %}

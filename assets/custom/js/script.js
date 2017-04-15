@@ -16,7 +16,7 @@ $(document).ready(function() {
            console.log("yaaay");
        }
        else {
-           alert("You shall not pass! You are a bot or very bad at math");
+           alert("You shall not pass! You are a bot or very bad at math :P");
            e.preventDefault();
        }
     });
@@ -24,12 +24,25 @@ $(document).ready(function() {
 
 $(document).ready(function(){
 
+    $("#commentTable").DataTable( {
+
+        "language" : {
+            "lengthMenu": "",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Showing _START_ to _END_ of _TOTAL_ comments",
+        },
+        "dom" : "<fl<t>ip>",
+        "order": [[ 2, "desc" ]]
+
+    });
+
     $("#topicTable").DataTable( {
 
         "language" : {
             "lengthMenu": "Display _MENU_ topics per page",
             "zeroRecords": "Nothing found - sorry"
-        }
+        },
+        "order": [[ 3, "desc" ]]
     });
 
     $(".clickable-row").click(function() {

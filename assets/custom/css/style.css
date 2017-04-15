@@ -161,6 +161,15 @@ li {
     padding-top: 25px;
 }
 
+.commentTableBox {
+    margin-top: 3%;
+}
+
+#commentTable thead {
+    background-color: #939393;
+    color: white;
+}
+
 /* Topic details */
 
 .topic_content {

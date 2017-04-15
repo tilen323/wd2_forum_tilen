@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-3 topic_create_box">
+            <div class="col-sm-5 topic_create_box">
                 <div class="topic_author">
                     <h2>My Profile:<img class="create_topic_img" src="https://s2.postimg.org/6avule161/profile.png"></h2>
                 </div>
@@ -23,27 +23,34 @@
 
                 {% endif %}
             </div>
-        </div>
 
-        <div class="row" style="margin-bottom: 50px;">
-            <div class="col-sm-6 col-sm-offset-3">
+            <div class="col-sm-7 commentTableBox">
                 {% if user_comments_sum %}
-                    <div>
-                        <h3>Comments ({{ user_comments_sum }}):</h3>
-                    </div>
-                    {% endif %}
 
-                    {% for comment in user_comments %}
-                    <div style="margin-bottom: 20px;" class="topic_box">
-                        <div class="topic_author">
-                            <a class="profile_topic_title" href="/topic/{{ comment.topic_id }}" data-toggle="tooltip" title="{{ comment.topic_title }}">Topic title: {{ comment.topic_title[0:55] + "..." }}</a>
+                    <table id="commentTable" class="table table-striped" width="100%" cellspacing="0">
 
-                        </div>
-                        <div class="topic_content">
-                            <p>Commnet: {{ comment.content }}</p>
-                        </div>
-                    </div>
-                    {% endfor %}
+                        <thead>
+                            <tr>
+                                <th>Topic Title:</th>
+                                <th>Comment:</th>
+                                <th>Created:</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for comment in user_comments %}
+                            <tr>
+                                <td>{{ comment.topic_title[0:25] + ".." }}</td>
+                                <td><a href="/topic/{{ comment.topic_id }}">{{ comment.content[0:25] + ".." }}</a></td>
+                                <td>{{ comment.created.strftime('%d.%m.%Y at %H:%M') }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                {% endif %}
             </div>
         </div>
     </div>
